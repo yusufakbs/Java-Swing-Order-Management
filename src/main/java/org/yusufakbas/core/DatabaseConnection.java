@@ -25,14 +25,14 @@ public class DatabaseConnection {
         return connection;
     }
 
-    public static DatabaseConnection getInstance() {
+    public static Connection getInstance() {
         try {
             if (instance == null || instance.getConnection().isClosed()) {
                 instance = new DatabaseConnection();
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return instance;
+        return instance.getConnection();
     }
 }

@@ -3,7 +3,6 @@ package org.yusufakbas.view;
 import org.yusufakbas.business.UserController;
 import org.yusufakbas.core.Helper;
 import org.yusufakbas.entity.User;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +17,6 @@ public class LoginUI extends JFrame {
     private JLabel lbl_email;
     private JLabel lbl_password;
     private JPasswordField fld_password;
-
     private UserController userController;
 
     public LoginUI() {
@@ -27,10 +25,8 @@ public class LoginUI extends JFrame {
         this.setTitle("Customer Management System");
         this.setSize(400, 400);
 
-        int x = (Toolkit.getDefaultToolkit().getScreenSize().width - this.getSize().width) / 2;
-        int y = (Toolkit.getDefaultToolkit().getScreenSize().height - this.getSize().height) / 2;
-        this.setLocation(x, y);
-        this.setVisible(true);
+        centerFrame();
+
 
         this.btn_login.addActionListener(e -> {
             JTextField[] checkList = {this.fld_email, this.fld_password};
@@ -48,6 +44,14 @@ public class LoginUI extends JFrame {
                 }
             }
         });
+    }
+
+
+    private void centerFrame() {
+        int x = (Toolkit.getDefaultToolkit().getScreenSize().width - this.getSize().width) / 2;
+        int y = (Toolkit.getDefaultToolkit().getScreenSize().height - this.getSize().height) / 2;
+        this.setLocation(x, y);
+        this.setVisible(true);
     }
 
 }

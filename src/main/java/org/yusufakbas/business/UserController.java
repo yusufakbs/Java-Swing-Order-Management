@@ -5,6 +5,7 @@ import org.yusufakbas.dao.UserDAO;
 import org.yusufakbas.entity.User;
 
 public class UserController {
+
     private final UserDAO userDAO = new UserDAO();
 
     public User findByLogin(String email, String password) {

@@ -20,7 +20,6 @@ public class DatabaseConnection {
         }
     }
 
-
     private Connection getConnection() {
         return connection;
     }
@@ -35,4 +34,5 @@ public class DatabaseConnection {
         }
         return instance.getConnection();
     }
+
 }

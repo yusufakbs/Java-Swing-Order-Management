@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class DashboardUI extends JFrame {
@@ -42,7 +44,6 @@ public class DashboardUI extends JFrame {
             dispose();
         }
 
-
         this.add(container);
         this.setTitle("Customer Management System");
         this.setSize(1000, 500);
@@ -50,8 +51,8 @@ public class DashboardUI extends JFrame {
         int y = (Toolkit.getDefaultToolkit().getScreenSize().height - this.getSize().height) / 2;
         this.setLocation(x, y);
         this.setVisible(true);
-
         this.lbl_welcome.setText("Welcome " + this.user.getName());
+
         this.btn_logout.addActionListener(e -> {
             dispose();
             LoginUI loginUI = new LoginUI();
@@ -59,8 +60,22 @@ public class DashboardUI extends JFrame {
 
         loadCustomerTable(null);
         loadCustomerPopUpMenu();
+        loadCustomerButtonEvent();
 
     }
+
+    private void loadCustomerButtonEvent() {
+        btn_customer_new.addActionListener(e -> {
+            CustomerUI customerUI = new CustomerUI(new Customer());
+            customerUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    loadCustomerTable(null);
+                }
+            });
+        });
+    }
+
 
     private void loadCustomerPopUpMenu() {
         this.tb_customer.addMouseListener(new MouseAdapter() {
@@ -70,13 +85,31 @@ public class DashboardUI extends JFrame {
                 tb_customer.setRowSelectionInterval(selectedRow, selectedRow);
             }
         });
+
         this.popup_customer.add("Update").addActionListener(e -> {
             int selectedId = Integer.parseInt(tb_customer.getValueAt(tb_customer.getSelectedRow(), 0).toString());
-            System.out.println(selectedId);
+            CustomerUI customerUI = new CustomerUI(this.customerController.findCustomerById(selectedId));
+            customerUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    loadCustomerTable(null);
+                }
+            });
+
         });
+
         this.popup_customer.add("Delete").addActionListener(e -> {
-            System.out.println("Delete clicked");
+            int selectedId = Integer.parseInt(tb_customer.getValueAt(tb_customer.getSelectedRow(), 0).toString());
+            if (Helper.confirm("sure")) {
+                if (this.customerController.deleteCustomer(selectedId)) {
+                    Helper.showMsg("done");
+                    loadCustomerTable(null);
+                } else {
+                    Helper.showMsg("error");
+                }
+            }
         });
+
         this.tb_customer.setComponentPopupMenu(this.popup_customer);
     }
 
@@ -101,6 +134,5 @@ public class DashboardUI extends JFrame {
         this.tb_customer.getColumnModel().getColumn(0).setPreferredWidth(50);
         this.tb_customer.setEnabled(false);
     }
-
 
 }

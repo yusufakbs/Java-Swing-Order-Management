@@ -18,7 +18,6 @@ public class Helper {
         }
     }
 
-
     public static boolean isFieldEmpty(JTextField field) {
         return field.getText().isEmpty();
     }
@@ -48,7 +47,9 @@ public class Helper {
     }
 
     public static void optionPaneDialogTR() {
-        UIManager.put("OptionPane.yesButtonText", "TAMAM");
+        UIManager.put("OptionPane.okButtonText", "Okey");
+        UIManager.put("OptionPane.yesButtonText", "Yes");
+        UIManager.put("OptionPane.noButtonText", "No");
     }
 
     public static void showMsg(String message) {
@@ -77,5 +78,17 @@ public class Helper {
 
     }
 
+    public static boolean confirm(String message) {
+        optionPaneDialogTR();
+        String msg;
+
+        if(message.equals("sure")){
+            msg = "Are you sure?";
+        }else {
+            msg = message;
+        }
+
+        return JOptionPane.showConfirmDialog(null, msg, "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
 
 }

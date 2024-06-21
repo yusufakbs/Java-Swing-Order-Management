@@ -8,10 +8,7 @@ import org.yusufakbas.entity.User;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class DashboardUI extends JFrame {
@@ -24,7 +21,7 @@ public class DashboardUI extends JFrame {
     private JTable tb_customer;
     private JPanel pnl_customer_filter;
     private JTextField fld_filter_customer_name;
-    private JComboBox cmb_customer_type;
+    private JComboBox cmb_f_customer_type;
     private JButton btn_customer_filter;
     private JButton btn_customer_new;
     private JLabel lbl_filter_customer_name;
@@ -58,10 +55,31 @@ public class DashboardUI extends JFrame {
             LoginUI loginUI = new LoginUI();
         });
 
+        //CUSTOMER TAB
         loadCustomerTable(null);
         loadCustomerPopUpMenu();
         loadCustomerButtonEvent();
 
+        this.cmb_f_customer_type.setModel(new DefaultComboBoxModel<>(Customer.TYPE.values()));
+        this.cmb_f_customer_type.setSelectedItem(null);
+
+        filterCustomerButtonEvent();
+        filterResetButtonEvent();
+    }
+
+    private void filterCustomerButtonEvent() {
+        btn_customer_filter.addActionListener(e -> {
+            ArrayList<Customer> filteredCustomers = this.customerController.filterCustomers(this.fld_filter_customer_name.getText(), (Customer.TYPE) this.cmb_f_customer_type.getSelectedItem());
+            loadCustomerTable(filteredCustomers);
+        });
+    }
+
+    private void filterResetButtonEvent() {
+        btn_customer_filter_reset.addActionListener(e -> {
+            loadCustomerTable(null);
+            this.fld_filter_customer_name.setText(null);
+            this.cmb_f_customer_type.setSelectedItem(null);
+        });
     }
 
     private void loadCustomerButtonEvent() {

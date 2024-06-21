@@ -17,7 +17,7 @@ public class DatabaseConstants {
                     "id SERIAL PRIMARY KEY," +
                     "name VARCHAR(255) NOT NULL," +
                     "code VARCHAR(255) NOT NULL," +
-                    "price DECIMAL(10, 2) NOT NULL," +
+                    "price INTEGER NOT NULL," +
                     "stock INTEGER NOT NULL" +
                     ");";
 
@@ -38,7 +38,7 @@ public class DatabaseConstants {
                     ");";
 
     public static final String CREATE_USER_TABLE =
-            "CREATE TABLE IF NOT EXISTS \"user\" (" +
+            "CREATE TABLE IF NOT EXISTS \"users\" (" +
                     "id SERIAL PRIMARY KEY," +
                     "name VARCHAR(255) NOT NULL," +
                     "mail VARCHAR(255) NOT NULL," +

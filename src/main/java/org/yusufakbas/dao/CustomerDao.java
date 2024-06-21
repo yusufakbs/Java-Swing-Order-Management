@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomerDAO {
+public class CustomerDao {
     private Connection connection;
 
-    public CustomerDAO() {
+    public CustomerDao() {
         this.connection = DatabaseConnection.getInstance();
     }
 
@@ -108,7 +108,6 @@ public class CustomerDAO {
         return customers;
 
     }
-
 
     public Customer match(ResultSet rs) throws SQLException {
         Customer customer = new Customer();

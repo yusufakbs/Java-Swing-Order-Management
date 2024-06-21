@@ -1,13 +1,13 @@
-package org.yusufakbas.business;
+package org.yusufakbas.controller;
 
 import org.yusufakbas.core.Helper;
-import org.yusufakbas.dao.CustomerDAO;
+import org.yusufakbas.dao.CustomerDao;
 import org.yusufakbas.entity.Customer;
 
 import java.util.ArrayList;
 
 public class CustomerController {
-    private final CustomerDAO customerDAO = new CustomerDAO();
+    private final CustomerDao customerDAO = new CustomerDao();
 
     public ArrayList<Customer> findAll() {
         return this.customerDAO.findAll();

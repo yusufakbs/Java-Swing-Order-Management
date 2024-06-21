@@ -1,12 +1,12 @@
 package org.yusufakbas.entity;
 
-public class User {
+public class Users {
     private int id;
     private String name;
     private String email;
     private String password;
 
-    public User() {
+    public Users() {
     }
 
     public int getId() {

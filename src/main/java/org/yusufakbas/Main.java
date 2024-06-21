@@ -1,11 +1,10 @@
 package org.yusufakbas;
 
-import org.yusufakbas.business.UserController;
+import org.yusufakbas.controller.UserController;
 import org.yusufakbas.core.DatabaseInitializer;
 import org.yusufakbas.core.Helper;
-import org.yusufakbas.entity.User;
+import org.yusufakbas.entity.Users;
 import org.yusufakbas.view.DashboardUI;
-import org.yusufakbas.view.LoginUI;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class Main {
         Helper.setTheme();
 //        LoginUI loginUI = new LoginUI();
         UserController userController = new UserController();
-        User user = userController.findByLogin("test@test.com","P4ssword");
-        DashboardUI dashboardUI = new DashboardUI(user);
+        Users users = userController.findByLogin("john.doe@example.com","password123");
+        DashboardUI dashboardUI = new DashboardUI(users);
     }
 }

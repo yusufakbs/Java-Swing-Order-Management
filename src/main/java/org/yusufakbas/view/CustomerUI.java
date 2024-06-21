@@ -1,6 +1,6 @@
 package org.yusufakbas.view;
 
-import org.yusufakbas.business.CustomerController;
+import org.yusufakbas.controller.CustomerController;
 import org.yusufakbas.core.Helper;
 import org.yusufakbas.entity.Customer;
 

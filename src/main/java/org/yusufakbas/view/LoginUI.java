@@ -1,8 +1,8 @@
 package org.yusufakbas.view;
 
-import org.yusufakbas.business.UserController;
+import org.yusufakbas.controller.UserController;
 import org.yusufakbas.core.Helper;
-import org.yusufakbas.entity.User;
+import org.yusufakbas.entity.Users;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,12 +34,12 @@ public class LoginUI extends JFrame {
             } else if (Helper.isFieldListEmpty(checkList)) {
                 Helper.showMsg("fill");
             } else {
-                User user = this.userController.findByLogin(this.fld_email.getText(), this.fld_password.getText());
-                if (user == null) {
+                Users users = this.userController.findByLogin(this.fld_email.getText(), this.fld_password.getText());
+                if (users == null) {
                     Helper.showMsg("User not found");
                 } else {
                     this.dispose();
-                    DashboardUI dashboardUI = new DashboardUI(user);
+                    DashboardUI dashboardUI = new DashboardUI(users);
                 }
             }
         });

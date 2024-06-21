@@ -1,7 +1,7 @@
 package org.yusufakbas.dao;
 
 import org.yusufakbas.core.DatabaseConnection;
-import org.yusufakbas.entity.User;
+import org.yusufakbas.entity.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,15 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDAO {
+public class UserDao {
     private Connection connection;
 
-    public UserDAO() {
+    public UserDao() {
         this.connection = DatabaseConnection.getInstance();
     }
 
-    public User findByLogin(String mail, String password) {
-        User user = null;
+    public Users findByLogin(String mail, String password) {
+        Users users = null;
         String query = "SELECT * FROM users WHERE mail = ? AND password = ?";
         try {
             PreparedStatement statement = this.connection.prepareStatement(query);
@@ -25,19 +25,19 @@ public class UserDAO {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                user = this.match(resultSet);
+                users = this.match(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return user;
+        return users;
     }
 
-    public ArrayList<User> findAll() {
-        ArrayList<User> users = new ArrayList<>();
+    public ArrayList<Users> findAll() {
+        ArrayList<Users> users = new ArrayList<>();
         try {
-            ResultSet rs = this.connection.createStatement().executeQuery("SELECT * FROM user");
+            ResultSet rs = this.connection.createStatement().executeQuery("SELECT * FROM users");
             while (rs.next()) {
                 users.add(this.match(rs));
             }
@@ -48,13 +48,13 @@ public class UserDAO {
     }
 
 
-    public User match(ResultSet rs) throws SQLException {
-        User user = new User();
-        user.setId(rs.getInt("id"));
-        user.setName(rs.getString("name"));
-        user.setEmail(rs.getString("mail"));
-        user.setPassword(rs.getString("password"));
-        return user;
+    public Users match(ResultSet rs) throws SQLException {
+        Users users = new Users();
+        users.setId(rs.getInt("id"));
+        users.setName(rs.getString("name"));
+        users.setEmail(rs.getString("mail"));
+        users.setPassword(rs.getString("password"));
+        return users;
     }
 
 }

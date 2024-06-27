@@ -18,12 +18,12 @@ public class ProductController {
         return this.productDao.save(product);
     }
 
-    public Product findById(int id) {
+    public Product getById(int id) {
         return this.productDao.getById(id);
     }
 
     public boolean updateProduct(Product product) {
-        if (this.findById(product.getId()) == null) {
+        if (this.getById(product.getId()) == null) {
             Helper.showMsg(product.getId() + " not found");
             return false;
         }
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     public boolean deleteProduct(int id) {
-        if (this.findById(id) == null) {
+        if (this.getById(id) == null) {
             Helper.showMsg(id + " not found");
             return false;
         }

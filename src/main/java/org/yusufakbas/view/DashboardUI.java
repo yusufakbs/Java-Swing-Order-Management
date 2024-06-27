@@ -261,7 +261,7 @@ public class DashboardUI extends JFrame {
 
         this.popup_product.add("Add to Cart").addActionListener(e -> {
             int selectedId = Integer.parseInt(this.tbl_product.getValueAt(this.tbl_product.getSelectedRow(), 0).toString());
-            Product basketProduct = this.productController.findById(selectedId);
+            Product basketProduct = this.productController.getById(selectedId);
             if (basketProduct.getStock() <= 0) {
                 Helper.showMsg("This product is not in stock!");
             } else {
@@ -277,7 +277,7 @@ public class DashboardUI extends JFrame {
 
         this.popup_product.add("Update").addActionListener(e -> {
             int selectedId = Integer.parseInt(this.tbl_product.getValueAt(this.tbl_product.getSelectedRow(), 0).toString());
-            ProductUI productUI = new ProductUI(this.productController.findById(selectedId));
+            ProductUI productUI = new ProductUI(this.productController.getById(selectedId));
             productUI.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {

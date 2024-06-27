@@ -27,7 +27,7 @@ public class DatabaseConstants {
                     "customer_id INTEGER NOT NULL REFERENCES Customer(id)," +
                     "product_id INTEGER NOT NULL REFERENCES Product(id)," +
                     "price DECIMAL(10, 2) NOT NULL," +
-                    "date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+                    "date DATE NOT NULL DEFAULT CURRENT_DATE," +
                     "note TEXT" +
                     ");";
 

@@ -102,4 +102,18 @@ public class ProductDao {
         }
     }
 
+    public ArrayList<Product> productsQuery(String query) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            ResultSet resultSet = this.connection.createStatement().executeQuery(query);
+            while (resultSet.next()) {
+                products.add(this.match(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+
+    }
+
 }

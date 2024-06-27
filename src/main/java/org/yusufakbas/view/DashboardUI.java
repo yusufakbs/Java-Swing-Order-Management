@@ -175,7 +175,7 @@ public class DashboardUI extends JFrame {
             if (selectedCustomer == null) {
                 Helper.showMsg("Please select a valid customer");
             } else {
-                Customer customer = this.customerController.findCustomerById(selectedCustomer.getKey());
+                Customer customer = this.customerController.getById(selectedCustomer.getKey());
                 ArrayList<Basket> baskets = this.basketController.findAll();
                 if (customer.getId() == 0) {
                     Helper.showMsg("Customer not found");
@@ -266,7 +266,7 @@ public class DashboardUI extends JFrame {
                 Helper.showMsg("This product is not in stock!");
             } else {
                 Basket basket = new Basket(basketProduct.getId());
-                if (this.basketController.saveBasket(basket)) {
+                if (this.basketController.save(basket)) {
                     Helper.showMsg("done");
                     loadBasketTable();
                 } else {
@@ -344,7 +344,7 @@ public class DashboardUI extends JFrame {
 
         this.popup_customer.add("Update").addActionListener(e -> {
             int selectedId = Integer.parseInt(tbl_customer.getValueAt(tbl_customer.getSelectedRow(), 0).toString());
-            CustomerUI customerUI = new CustomerUI(this.customerController.findCustomerById(selectedId));
+            CustomerUI customerUI = new CustomerUI(this.customerController.getById(selectedId));
             customerUI.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -358,7 +358,7 @@ public class DashboardUI extends JFrame {
         this.popup_customer.add("Delete").addActionListener(e -> {
             int selectedId = Integer.parseInt(tbl_customer.getValueAt(tbl_customer.getSelectedRow(), 0).toString());
             if (Helper.confirm("sure")) {
-                if (this.customerController.deleteCustomer(selectedId)) {
+                if (this.customerController.delete(selectedId)) {
                     Helper.showMsg("done");
                     loadCustomerTable(null);
                     loadBasketCustomerCombo();

@@ -29,7 +29,7 @@ public class CustomerDao {
         return customers;
     }
 
-    public boolean saveCustomer(Customer customer) {
+    public boolean save(Customer customer) {
         String query = "INSERT INTO customer (name, type, phone, mail, address) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);
@@ -47,7 +47,7 @@ public class CustomerDao {
 
     }
 
-    public Customer findCustomerById(int id) {
+    public Customer getById(int id) {
         Customer customer = null;
         String query = "SELECT * FROM customer WHERE id = ?";
         try {
@@ -64,7 +64,7 @@ public class CustomerDao {
         return customer;
     }
 
-    public boolean updateCustomer(Customer customer) {
+    public boolean update(Customer customer) {
         String query = "UPDATE customer SET name = ?, type = ?, phone = ?, mail = ?, address = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);
@@ -82,7 +82,7 @@ public class CustomerDao {
 
     }
 
-    public boolean deleteCustomer(int id) {
+    public boolean delete(int id) {
         String query = "DELETE FROM customer WHERE id = ?";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);

@@ -39,7 +39,7 @@ public class ProductDao {
         return product;
     }
 
-    public boolean saveProduct(Product product) {
+    public boolean save(Product product) {
         String query = "INSERT INTO product (name, price, code, stock) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);
@@ -56,7 +56,7 @@ public class ProductDao {
         return false;
     }
 
-    public boolean updateProduct(Product product) {
+    public boolean update(Product product) {
         String query = "UPDATE product SET name = ?, price = ?, code = ?, stock = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);
@@ -74,7 +74,7 @@ public class ProductDao {
         return false;
     }
 
-    public Product findProductById(int id) {
+    public Product getById(int id) {
         Product product = null;
         String query = "SELECT * FROM product WHERE id = ?";
         try {
@@ -90,7 +90,7 @@ public class ProductDao {
         return product;
     }
 
-    public boolean deleteProduct(int id) {
+    public boolean delete(int id) {
         String query = "DELETE FROM product WHERE id = ?";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);

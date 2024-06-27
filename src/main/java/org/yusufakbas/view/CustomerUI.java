@@ -63,9 +63,9 @@ public class CustomerUI extends JFrame {
                 this.customer.setAddress(this.tarea_customer_address.getText());
                 this.customer.setEmail(this.fld_customer_email.getText());
                 if(this.customer.getId() == 0){
-                    result = this.customerController.saveCustomer(this.customer);
+                    result = this.customerController.save(this.customer);
                 }else {
-                    result = this.customerController.updateCustomer(this.customer);
+                    result = this.customerController.update(this.customer);
                 }
                 if(result){
                     Helper.showMsg("Done");

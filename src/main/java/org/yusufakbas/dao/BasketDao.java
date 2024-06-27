@@ -62,7 +62,7 @@ public class BasketDao {
         Basket basket = new Basket();
         basket.setId(rs.getInt("id"));
         basket.setProductId(rs.getInt("product_id"));
-        basket.setProduct(productDao.findProductById(rs.getInt("product_id")));
+        basket.setProduct(productDao.getById(rs.getInt("product_id")));
         return basket;
     }
 

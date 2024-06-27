@@ -31,7 +31,7 @@ public class CartDao {
         return carts;
     }
 
-    public boolean saveCustomer(Cart cart) {
+    public boolean save(Cart cart) {
         String query = "INSERT INTO cart (customer_id, product_id, price, date, note) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(query);
@@ -58,8 +58,8 @@ public class CartDao {
         cart.setProductId(rs.getInt("product_id"));
         cart.setNote(rs.getString("note"));
         cart.setDate(LocalDate.parse(rs.getString("date")));
-        cart.setCustomer(this.customerDao.findCustomerById(cart.getCustomerId()));
-        cart.setProduct(this.productDao.findProductById(cart.getProductId()));
+        cart.setCustomer(this.customerDao.getById(cart.getCustomerId()));
+        cart.setProduct(this.productDao.getById(cart.getProductId()));
         return cart;
     }
 

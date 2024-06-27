@@ -15,11 +15,11 @@ public class ProductController {
     }
 
     public boolean saveProduct(Product product) {
-        return this.productDao.saveProduct(product);
+        return this.productDao.save(product);
     }
 
     public Product findById(int id) {
-        return this.productDao.findProductById(id);
+        return this.productDao.getById(id);
     }
 
     public boolean updateProduct(Product product) {
@@ -27,7 +27,7 @@ public class ProductController {
             Helper.showMsg(product.getId() + " not found");
             return false;
         }
-        return this.productDao.updateProduct(product);
+        return this.productDao.update(product);
     }
 
     public boolean deleteProduct(int id) {
@@ -35,7 +35,7 @@ public class ProductController {
             Helper.showMsg(id + " not found");
             return false;
         }
-        return this.productDao.deleteProduct(id);
+        return this.productDao.delete(id);
     }
 
     public ArrayList<Product> filterProduct(String name, String code, Item isStock) {

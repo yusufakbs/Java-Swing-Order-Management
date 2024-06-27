@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class BasketController {
     private final BasketDao basketDao = new BasketDao();
 
-    public boolean saveBasket(Basket basket) {
+    public boolean save(Basket basket) {
         return basketDao.save(basket);
     }
 

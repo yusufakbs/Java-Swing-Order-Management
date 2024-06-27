@@ -13,29 +13,29 @@ public class CustomerController {
         return this.customerDAO.findAll();
     }
 
-    public boolean saveCustomer(Customer customer) {
-        return this.customerDAO.saveCustomer(customer);
+    public boolean save(Customer customer) {
+        return this.customerDAO.save(customer);
     }
 
-    public Customer findCustomerById(int id) {
-        return this.customerDAO.findCustomerById(id);
+    public Customer getById(int id) {
+        return this.customerDAO.getById(id);
     }
 
-    public boolean updateCustomer(Customer customer) {
-        if (this.findCustomerById(customer.getId()) == null) {
+    public boolean update(Customer customer) {
+        if (this.getById(customer.getId()) == null) {
             Helper.showMsg(customer.getId() + " not found");
             return false;
         } else {
-            return this.customerDAO.updateCustomer(customer);
+            return this.customerDAO.update(customer);
         }
     }
 
-    public boolean deleteCustomer(int id) {
-        if (this.findCustomerById(id) == null) {
+    public boolean delete(int id) {
+        if (this.getById(id) == null) {
             Helper.showMsg(id + " not found");
             return false;
         }
-        return this.customerDAO.deleteCustomer(id);
+        return this.customerDAO.delete(id);
     }
 
 

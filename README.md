@@ -25,8 +25,8 @@ Bu projeyi yerel olarak çalıştırmak için aşağıdaki adımları izleyin:
 
 
  Uygulamayı derleyip çalıştırın:
-	•	Favori IDE’nizi açın (örneğin, IntelliJ IDEA, Eclipse) ve projeyi içeri aktarın.
-	•	IDE üzerinden projeyi derleyip çalıştırın.
+- Favori IDE’nizi açın (örneğin, IntelliJ IDEA, Eclipse) ve projeyi içeri aktarın.
+- IDE üzerinden projeyi derleyip çalıştırın.
 
 Kullanım
 

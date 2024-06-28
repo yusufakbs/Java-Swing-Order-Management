@@ -20,8 +20,8 @@ Bu projeyi yerel olarak çalıştırmak için aşağıdaki adımları izleyin:
 
  Depoyu klonlayın:
 
-	git clone https://github.com/yusufakbs/Java-Swing-Siparis-Yonetimi.git
-	cd Java-Swing-Siparis-Yonetimi
+	git clone https://github.com/yusufakbs/Java-Swing-Order-Management.git
+	cd Java-Swing-Order-Management
 
 
  Uygulamayı derleyip çalıştırın:
